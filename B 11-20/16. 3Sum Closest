@@ -1,0 +1,29 @@
+class Solution(object):
+    def threeSumClosest(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        nums.sort()  # ordiniamo l'array in modo crescente
+        n = len(nums)
+        diff = float('inf')  # differenza minima tra la somma e il target
+        res = 0  # somma dei tre interi più vicina al target
+    
+        for i in range(n-2):
+            j, k = i+1, n-1  # inizializziamo i due puntatori
+            while j < k:
+                s = nums[i] + nums[j] + nums[k]  # somma dei tre interi
+                if abs(s-target) < diff:
+                    # aggiorniamo la differenza minima e la somma dei tre interi più vicina
+                    diff = abs(s-target)
+                    res = s
+                if s < target:
+                    j += 1
+                elif s > target:
+                    k -= 1
+                else:
+                    # se la somma è esattamente uguale al target, la restituiamo
+                    return s
+                
+        return res

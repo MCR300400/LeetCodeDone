@@ -1,0 +1,37 @@
+class Solution(object):
+    flag = -1
+    def searchInsert(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        if len(nums) == 0:
+            print(1)
+            return 0
+        if len(nums) == 1 and nums[0] == target:
+            print(2)
+            return 0
+        self.binarySearch(nums,target,0,len(nums)-1)
+        if self.flag == -1:
+            for x in range(len(nums)):
+                if nums[x] >= target:
+                    print('for')
+                    return x
+            print(3)
+            return len(nums)
+        print(4)
+        return self.flag
+    
+    def binarySearch(self,nums,target,inizio,fine):
+        if inizio >= fine:
+            return -1
+        else:
+            pivot = (inizio + fine) // 2
+            if nums[pivot] == target:
+                self.flag = pivot
+            if nums[pivot] < target:
+                self.binarySearch(nums,target,pivot+1,fine)
+            if nums[pivot] > target:
+                self.binarySearch(nums,target,inizio,pivot-1)
+        
