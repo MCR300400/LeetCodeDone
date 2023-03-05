@@ -1,0 +1,27 @@
+class Solution(object):
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        """
+        Trova la coppia di linee verticali che formano un contenitore con la massima area
+        restituendo l'area massima che il contenitore può contenere.
+        """
+        left, right = 0, len(height) - 1  # inizializza i puntatori left e right
+        max_area = 0  # inizializza l'area massima a 0
+        
+        # finché left e right non si incontrano
+        while left < right:
+            # calcola l'area del contenitore attuale
+            area = min(height[left], height[right]) * (right - left)
+            # aggiorna l'area massima
+            max_area = max(max_area, area)
+            
+            # sposta il puntatore più basso verso l'interno
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        
+        return max_area
