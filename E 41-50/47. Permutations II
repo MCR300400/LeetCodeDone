@@ -1,9 +1,0 @@
-class Solution(object):
-    def permuteUnique(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[List[int]]
-        """
-        perm = set(itertools.permutations(nums))
-        perm = [list(x) for x in perm]
-        return perm
