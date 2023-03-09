@@ -1,0 +1,20 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        
+        start = res = 0  # inizializziamo l'indice di inizio e la lunghezza massima
+        chars = set()  # set dei caratteri nella sottostringa corrente
+    
+        for i, c in enumerate(s):
+            while c in chars:
+                # se il carattere è già presente nella sottostringa, rimuoviamo il primo carattere
+                chars.remove(s[start])
+                start += 1
+            # aggiungiamo il carattere corrente alla sottostringa e aggiorniamo la lunghezza massima
+            chars.add(c)
+            res = max(res, i-start+1)
+        
+        return res

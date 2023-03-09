@@ -1,0 +1,36 @@
+import string
+class Solution(object):
+    def myAtoi(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+
+        s = s.lstrip()  # remove leading whitespace
+        if not s:  # empty string
+            return 0
+    
+        # check if number is negative or positive
+        sign = 1
+        if s[0] == '-':
+            sign = -1
+            s = s[1:]
+        elif s[0] == '+':
+            s = s[1:]
+    
+        # read digits until non-digit character or end of string
+        num = 0
+        for c in s:
+            if not c.isdigit():
+                break
+            num = num * 10 + int(c)
+    
+        # apply sign and clamp to 32-bit signed integer range
+        num *= sign
+        num = max(-2**31, min(num, 2**31 - 1))
+    
+        return num
+            
+
+            
+        

@@ -1,0 +1,69 @@
+class Solution(object):
+    def isValidSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """
+        allC = []
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                if board[i][j] != '.':
+                    allC.append((board[i][j],(i,j)))
+
+
+        #TUTTE LE CONONNE
+        for i in range(9):
+            supp = []
+            for x in allC:
+                if x[1][1] == i:
+                    supp.append(x[0])
+            sets = list(set(supp))
+            if len(supp) != len(sets):
+                return False
+
+
+        # TUTTE LE RIGHE
+        for i in range(9):
+            supp = []
+            for x in allC:
+                if x[1][0] == i:
+                    supp.append(x[0])
+            sets = list(set(supp))
+            if len(supp) != len(sets):
+                return False
+
+
+        # TUTTI I CUBI
+        c = [[],[],[],[],[],[],[],[],[]]
+        for x in allC:
+            if x[1][1] <= 2: #prime 3 colonne
+
+                if x[1][0] <= 2: # 1cubo
+                    c[0].append(x[0])
+                if x[1][0] > 2 and x[1][0] <= 5: # 4cubo
+                    c[3].append(x[0])
+                if x[1][0] > 5 and x[1][0] <= 8: # 7cubo
+                    c[6].append(x[0])
+
+            if x[1][1] > 2 and x[1][1] <= 5: #seconde 3 colonne
+                if x[1][0] <= 2: # 2cubo
+                    c[1].append(x[0])
+                if x[1][0] > 2 and x[1][0] <= 5: # 5cubo
+                    c[4].append(x[0])
+                if x[1][0] > 5 and x[1][0] <= 8: # 8cubo
+                    c[7].append(x[0])
+            if x[1][1] > 5 and x[1][1] <= 8: #seconde 3 colonne
+                if x[1][0] <= 2: # 3cubo
+                    c[2].append(x[0])
+                if x[1][0] > 2 and x[1][0] <= 5: # 6cubo
+                    c[5].append(x[0])
+                if x[1][0] > 5 and x[1][0] <= 8: # 9cubo
+                    c[8].append(x[0])
+        for i in range(len(c)):
+            sets = list(set(c[i]))
+            if len(sets) != len(c[i]):
+                return False
+        
+        return True
+        
+            

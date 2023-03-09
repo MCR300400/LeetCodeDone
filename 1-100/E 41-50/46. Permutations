@@ -1,0 +1,9 @@
+class Solution(object):
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        perm = list(itertools.permutations(nums))
+        perm = [list(x) for x in perm]
+        return perm

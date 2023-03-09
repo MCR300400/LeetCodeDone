@@ -1,0 +1,82 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    targetSum = 0
+    flag = False
+    def hasPathSum(self, root, targetSum):
+        """
+        :type root: TreeNode
+        :type targetSum: int
+        :rtype: bool
+        """
+        self.flag = False
+        self.targetSum = targetSum
+        if root == None:
+            return False
+        self.cost(root,root.val)
+        return self.flag
+
+
+    def cost(self,root,cost):
+        if not self.flag:
+            if root.left == None and root.right == None:
+                print(str(cost) + ' vs ' + str(self.targetSum))
+                if cost == self.targetSum:
+                    self.flag = True
+            if root.left != None:
+                self.cost(root.left,cost+root.left.val)
+            if root.right != None:
+                self.cost(root.right,cost+root.right.val)
+            
+           
+           
+           
+           
+           
+           
+------------------------------------------
+              OR
+------------------------------------------
+
+
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    c = []
+    def hasPathSum(self, root, targetSum):
+        """
+        :type root: TreeNode
+        :type targetSum: int
+        :rtype: bool
+        """
+        self.c = []
+        if root == None:
+            return False
+        self.cost(root,root.val)
+        print(self.c)
+        if targetSum in self.c:
+            return True
+        return False
+    def cost(self,root,cost):
+        print('prima ' + str(cost) + ' nood = ' + str(root.val))
+        if root.left == None and root.right == None:
+            self.c.append(cost)
+        print('doco ' + str(cost))
+        if root.left != None:
+            self.cost(root.left,cost+root.left.val)
+        if root.right != None:
+            self.cost(root.right,cost+root.right.val)
+
+
+
+
+

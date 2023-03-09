@@ -1,0 +1,17 @@
+class Solution(object):
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n == 1:
+            return 1
+        if n == 2: 
+            return 2
+        m1 = 2
+        m2 = 1
+        for i in range(n-2):
+            sup = m1
+            m1 += m2
+            m2 = sup
+        return m1
