@@ -1,0 +1,7 @@
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        s = list(set(nums))
+        while s:
+            if nums.count(s[0]) == 1:
+                return s[0]
+            s.remove(s[0])
