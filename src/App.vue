@@ -1,0 +1,207 @@
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import rawData from '@/data/solutionsData.json'
+import type { SolutionsDataset, ProblemItem } from '@/types'
+import Navbar from '@/components/Navbar.vue'
+import StatsOverview from '@/components/StatsOverview.vue'
+import FilterBar from '@/components/FilterBar.vue'
+import ProblemCard from '@/components/ProblemCard.vue'
+import CodeModal from '@/components/CodeModal.vue'
+import { Terminal, Code2, ArrowUpRight } from 'lucide-vue-next'
+
+const dataset = ref<SolutionsDataset>(rawData as unknown as SolutionsDataset)
+
+const searchQuery = ref('')
+const selectedDifficulty = ref('All')
+const selectedLanguage = ref('All')
+const selectedTopic = ref('All')
+const sortOrder = ref<'asc' | 'desc'>('asc')
+const selectedProblem = ref<ProblemItem | null>(null)
+
+const languagesList = computed(() => {
+  return Object.keys(dataset.value.stats.languages)
+})
+
+const filteredProblems = computed(() => {
+  let list = dataset.value.problems
+
+  // Search filter
+  const query = searchQuery.value.trim().toLowerCase()
+  if (query) {
+    list = list.filter(p => {
+      const matchNum = p.number.toString().includes(query)
+      const matchTitle = p.title.toLowerCase().includes(query)
+      const matchSlug = p.slug.toLowerCase().includes(query)
+      const matchTopic = p.topics.some(t => t.toLowerCase().includes(query))
+      return matchNum || matchTitle || matchSlug || matchTopic
+    })
+  }
+
+  // Difficulty filter
+  if (selectedDifficulty.value !== 'All') {
+    list = list.filter(p => p.difficulty === selectedDifficulty.value)
+  }
+
+  // Language filter
+  if (selectedLanguage.value !== 'All') {
+    list = list.filter(p => p.primaryLanguage === selectedLanguage.value)
+  }
+
+  // Topic filter
+  if (selectedTopic.value !== 'All') {
+    list = list.filter(p => p.topics.includes(selectedTopic.value))
+  }
+
+  // Sorting
+  list = [...list].sort((a, b) => {
+    return sortOrder.value === 'asc' ? a.number - b.number : b.number - a.number
+  })
+
+  return list
+})
+
+function toggleSort() {
+  sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
+}
+
+function resetFilters() {
+  searchQuery.value = ''
+  selectedDifficulty.value = 'All'
+  selectedLanguage.value = 'All'
+  selectedTopic.value = 'All'
+}
+
+function openProblem(problem: ProblemItem) {
+  selectedProblem.value = problem
+}
+
+function closeProblem() {
+  selectedProblem.value = null
+}
+</script>
+
+<template>
+  <div class="min-h-screen flex flex-col bg-leetcode-bg text-slate-100 font-sans selection:bg-leetcode-orange/30 selection:text-white">
+    <!-- Navbar -->
+    <Navbar :total-count="dataset.stats.totalProblems" />
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8 w-full">
+      
+      <!-- Hero Intro Header -->
+      <section class="space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leetcode-card border border-leetcode-border text-xs font-mono text-leetcode-orange">
+          <Terminal class="w-3.5 h-3.5" />
+          <span>Edoardo Pippi • LeetCode Solutions Catalog</span>
+        </div>
+
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+          <div>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white font-mono">
+              Algoritmi & Problem Solving
+            </h1>
+            <p class="text-sm sm:text-base text-slate-400 mt-2 max-w-2xl leading-relaxed">
+              Raccolta interattiva a zero costi runtime delle sfide LeetCode risolte. 
+              Tutti i file sorgente sono pre-indicizzati staticamente in build time per garantire navigazione istantanea e consumo zero del piano free Cloudflare.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <a
+              href="https://leetcode.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-leetcode-card border border-leetcode-border hover:border-leetcode-orange/50 text-xs font-mono text-slate-300 transition-colors"
+            >
+              <span>LeetCode Official</span>
+              <ArrowUpRight class="w-3.5 h-3.5 text-slate-500" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Overview -->
+      <StatsOverview :stats="dataset.stats" />
+
+      <!-- Interactive Filters & Search -->
+      <FilterBar
+        :search-query="searchQuery"
+        :selected-difficulty="selectedDifficulty"
+        :selected-language="selectedLanguage"
+        :selected-topic="selectedTopic"
+        :sort-order="sortOrder"
+        :all-topics="dataset.stats.allTopics"
+        :languages="languagesList"
+        :total-filtered="filteredProblems.length"
+        :total-all="dataset.stats.totalProblems"
+        @update:search-query="searchQuery = $event"
+        @update:selected-difficulty="selectedDifficulty = $event"
+        @update:selected-language="selectedLanguage = $event"
+        @update:selected-topic="selectedTopic = $event"
+        @toggle-sort="toggleSort"
+        @reset-filters="resetFilters"
+      />
+
+      <!-- Problems Grid -->
+      <section v-if="filteredProblems.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <ProblemCard
+          v-for="problem in filteredProblems"
+          :key="problem.id"
+          :problem="problem"
+          @select="openProblem"
+        />
+      </section>
+
+      <!-- Empty State when filters yield no results -->
+      <section
+        v-else
+        class="py-16 text-center rounded-2xl bg-leetcode-card border border-leetcode-border/80 p-8 space-y-4"
+      >
+        <div class="w-12 h-12 rounded-xl bg-leetcode-bg border border-leetcode-border flex items-center justify-center text-slate-500 mx-auto">
+          <Code2 class="w-6 h-6" />
+        </div>
+        <h3 class="text-lg font-semibold text-white font-mono">
+          Nessuna soluzione corrisponde ai criteri
+        </h3>
+        <p class="text-xs text-slate-400 font-mono max-w-md mx-auto">
+          Prova a modificare la ricerca per numero o parola chiave, oppure reimposta i filtri di difficoltà e topic.
+        </p>
+        <button
+          type="button"
+          @click="resetFilters"
+          class="px-4 py-2 rounded-lg bg-leetcode-orange text-slate-950 text-xs font-mono font-bold hover:bg-leetcode-yellow transition-colors"
+        >
+          Azzera Tutti i Filtri
+        </button>
+      </section>
+
+    </main>
+
+    <!-- Code Viewer Modal -->
+    <CodeModal
+      :problem="selectedProblem"
+      @close="closeProblem"
+    />
+
+    <!-- Footer -->
+    <footer class="border-t border-leetcode-border/80 bg-leetcode-card/40 py-8 text-xs font-mono text-slate-400">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <span class="text-slate-300 font-semibold">LeetCodeDone</span> • Edoardo Pippi &copy; {{ new Date().getFullYear() }}
+        </div>
+        <div class="flex items-center gap-4 text-2xs text-slate-500">
+          <span>Static Generation • Cloudflare Pages</span>
+          <span>•</span>
+          <a
+            href="https://github.com/MCR300400/LeetCodeDone"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-leetcode-orange hover:underline"
+          >
+            GitHub Repository
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</template>
