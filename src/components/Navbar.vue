@@ -24,24 +24,26 @@ defineProps<{
               v1.0
             </span>
           </div>
-          <span class="text-2xs text-slate-400 block font-mono">
+          <span class="text-2xs text-slate-400 block font-mono truncate max-w-[150px] xs:max-w-[200px] sm:max-w-none">
             Archivio Algoritmi • Edoardo Pippi
           </span>
         </div>
       </a>
 
       <!-- Right Actions -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
         <!-- GitHub Repository Button -->
         <a
           href="https://github.com/MCR300400/LeetCodeDone"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-leetcode-border bg-leetcode-card hover:bg-leetcode-cardHover text-slate-200 hover:text-white text-xs font-medium transition-colors"
+          class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-lg border border-leetcode-border bg-leetcode-card hover:bg-leetcode-cardHover text-slate-200 hover:text-white text-xs font-medium transition-colors"
+          title="Vedi repository su GitHub"
         >
           <Github class="w-4 h-4" />
-          <span class="hidden sm:inline">MCR300400/LeetCodeDone</span>
-          <ExternalLink class="w-3 h-3 text-slate-500" />
+          <span class="hidden md:inline">MCR300400/LeetCodeDone</span>
+          <span class="hidden sm:inline md:hidden">GitHub</span>
+          <ExternalLink class="w-3 h-3 text-slate-500 hidden sm:inline" />
         </a>
       </div>
 

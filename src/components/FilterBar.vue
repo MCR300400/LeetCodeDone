@@ -45,8 +45,8 @@ function clearSearch() {
           type="text"
           :value="searchQuery"
           @input="emit('update:searchQuery', ($event.target as HTMLInputElement).value)"
-          placeholder="Cerca per numero (es. 1, 121) o titolo (es. Two Sum, Anagram)..."
-          class="w-full pl-10 pr-10 py-2.5 rounded-lg bg-leetcode-bg border border-leetcode-border/80 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-leetcode-orange/60 focus:ring-1 focus:ring-leetcode-orange/30 font-mono transition-colors"
+          placeholder="Cerca per numero (es. 1, 121) o titolo (es. Two Sum)..."
+          class="w-full pl-10 pr-10 py-2.5 rounded-lg bg-leetcode-bg border border-leetcode-border/80 text-xs sm:text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-leetcode-orange/60 focus:ring-1 focus:ring-leetcode-orange/30 font-mono transition-colors"
         />
         <button
           v-if="searchQuery"
@@ -59,11 +59,11 @@ function clearSearch() {
       </div>
 
       <!-- Right controls: Sort order & Active count -->
-      <div class="flex items-center gap-2.5">
+      <div class="flex items-center justify-between sm:justify-end gap-2.5">
         <button
           type="button"
           @click="emit('toggleSort')"
-          class="inline-flex items-center gap-2 px-3 py-2.5 rounded-lg border border-leetcode-border bg-leetcode-bg hover:bg-leetcode-border/40 text-xs font-mono text-slate-200 transition-colors"
+          class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-leetcode-border bg-leetcode-bg hover:bg-leetcode-border/40 text-xs font-mono text-slate-200 transition-colors"
           :title="sortOrder === 'asc' ? 'Ordinamento Crescente' : 'Ordinamento Decrescente'"
         >
           <ArrowUpDown class="w-3.5 h-3.5 text-leetcode-orange" />
@@ -78,10 +78,10 @@ function clearSearch() {
     </div>
 
     <!-- Middle Row: Difficulty & Language Filter Pills -->
-    <div class="flex flex-wrap items-center gap-2 sm:gap-3 pt-2 border-t border-leetcode-border/60">
+    <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3 pt-2 border-t border-leetcode-border/60">
       
       <!-- Difficulty Tabs -->
-      <div class="inline-flex p-1 rounded-lg bg-leetcode-bg border border-leetcode-border text-xs font-medium">
+      <div class="grid grid-cols-4 sm:inline-flex p-1 rounded-lg bg-leetcode-bg border border-leetcode-border text-xs font-medium">
         <button
           type="button"
           @click="emit('update:selectedDifficulty', 'All')"
@@ -90,7 +90,7 @@ function clearSearch() {
               ? 'bg-leetcode-card text-white shadow-xs'
               : 'text-slate-400 hover:text-slate-200'
           ]"
-          class="px-2.5 py-1 rounded-md transition-colors"
+          class="px-2 sm:px-2.5 py-1 rounded-md transition-colors text-center"
         >
           Tutte
         </button>
@@ -102,7 +102,7 @@ function clearSearch() {
               ? 'bg-emerald-950/60 text-emerald-400 border border-emerald-800/40 shadow-xs'
               : 'text-slate-400 hover:text-emerald-400'
           ]"
-          class="px-2.5 py-1 rounded-md transition-colors"
+          class="px-2 sm:px-2.5 py-1 rounded-md transition-colors text-center"
         >
           Easy
         </button>
@@ -114,7 +114,7 @@ function clearSearch() {
               ? 'bg-amber-950/60 text-amber-400 border border-amber-800/40 shadow-xs'
               : 'text-slate-400 hover:text-amber-400'
           ]"
-          class="px-2.5 py-1 rounded-md transition-colors"
+          class="px-2 sm:px-2.5 py-1 rounded-md transition-colors text-center"
         >
           Medium
         </button>
@@ -126,14 +126,14 @@ function clearSearch() {
               ? 'bg-rose-950/60 text-rose-400 border border-rose-800/40 shadow-xs'
               : 'text-slate-400 hover:text-rose-400'
           ]"
-          class="px-2.5 py-1 rounded-md transition-colors"
+          class="px-2 sm:px-2.5 py-1 rounded-md transition-colors text-center"
         >
           Hard
         </button>
       </div>
 
       <!-- Language Selector -->
-      <div class="inline-flex p-1 rounded-lg bg-leetcode-bg border border-leetcode-border text-xs font-mono">
+      <div class="flex items-center p-1 rounded-lg bg-leetcode-bg border border-leetcode-border text-xs font-mono overflow-x-auto scrollbar-none">
         <button
           type="button"
           @click="emit('update:selectedLanguage', 'All')"
@@ -142,9 +142,10 @@ function clearSearch() {
               ? 'bg-leetcode-card text-white shadow-xs'
               : 'text-slate-400 hover:text-slate-200'
           ]"
-          class="px-2.5 py-1 rounded-md transition-colors"
+          class="px-2.5 py-1 rounded-md transition-colors shrink-0"
         >
-          Tutti i Linguaggi
+          <span class="hidden sm:inline">Tutti i Linguaggi</span>
+          <span class="sm:hidden">Tutti</span>
         </button>
         <button
           v-for="lang in languages"
@@ -156,7 +157,7 @@ function clearSearch() {
               ? 'bg-leetcode-card text-leetcode-orange shadow-xs font-semibold'
               : 'text-slate-400 hover:text-slate-200'
           ]"
-          class="px-2.5 py-1 rounded-md transition-colors"
+          class="px-2.5 py-1 rounded-md transition-colors shrink-0"
         >
           {{ lang }}
         </button>
@@ -167,7 +168,7 @@ function clearSearch() {
         v-if="searchQuery || selectedDifficulty !== 'All' || selectedLanguage !== 'All' || selectedTopic !== 'All'"
         type="button"
         @click="emit('resetFilters')"
-        class="text-xs text-leetcode-orange hover:underline font-mono px-2 py-1 ml-auto"
+        class="text-xs text-leetcode-orange hover:underline font-mono px-2 py-1 self-start sm:ml-auto"
       >
         Azzera Filtri
       </button>
