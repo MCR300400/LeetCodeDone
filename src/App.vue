@@ -92,16 +92,16 @@ function closeProblem() {
       <section class="space-y-3 sm:space-y-4">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leetcode-card border border-leetcode-border text-xs font-mono text-leetcode-orange max-w-full">
           <Terminal class="w-3.5 h-3.5 shrink-0" />
-          <span class="truncate">Edoardo Pippi • LeetCode Solutions Catalog</span>
+          <span class="truncate">Edoardo Pippi • Archivio Esercizi & Soluzioni</span>
         </div>
 
         <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6">
           <div class="min-w-0">
             <h1 class="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white font-mono break-words">
-              Algoritmi & Problem Solving
+              Algoritmi & Strutture Dati
             </h1>
             <p class="text-xs sm:text-base text-slate-400 mt-2 max-w-2xl leading-relaxed">
-              Raccolta interattiva delle sfide e algoritmi LeetCode risolti, con codice sorgente completo, categorizzazione per topic, livello di difficoltà e ricerca istantanea.
+              Soluzioni personali implementate e verificate su LeetCode. Codice sorgente in Python, Java e SQL con analisi della complessità temporale e annotazioni tecniche.
             </p>
           </div>
 
