@@ -199,7 +199,7 @@ onUnmounted(() => {
 
       <!-- Modal Footer Note -->
       <div class="px-6 py-3 border-t border-leetcode-border bg-leetcode-card flex items-center justify-between text-2xs font-mono text-slate-500">
-        <span>Soluzione verificata e accettata su LeetCode • Zero chiamate API runtime</span>
+        <span>Soluzione verificata e accettata su LeetCode</span>
         <span class="hidden sm:inline">Premi <kbd class="px-1.5 py-0.5 rounded bg-leetcode-bg border border-leetcode-border text-slate-400">Esc</kbd> per chiudere</span>
       </div>
     </div>

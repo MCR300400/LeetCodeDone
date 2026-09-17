@@ -101,8 +101,7 @@ function closeProblem() {
               Algoritmi & Problem Solving
             </h1>
             <p class="text-sm sm:text-base text-slate-400 mt-2 max-w-2xl leading-relaxed">
-              Raccolta interattiva a zero costi runtime delle sfide LeetCode risolte. 
-              Tutti i file sorgente sono pre-indicizzati staticamente in build time per garantire navigazione istantanea e consumo zero del piano free Cloudflare.
+              Raccolta interattiva delle sfide e algoritmi LeetCode risolti, con codice sorgente completo, categorizzazione per topic, livello di difficoltà e ricerca istantanea.
             </p>
           </div>
 

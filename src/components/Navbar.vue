@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Code2, Github, ExternalLink, Zap } from 'lucide-vue-next'
+import { Code2, Github, ExternalLink } from 'lucide-vue-next'
 
 defineProps<{
   totalCount: number
@@ -32,12 +32,6 @@ defineProps<{
 
       <!-- Right Actions -->
       <div class="flex items-center gap-3">
-        <!-- Free Tier badge -->
-        <div class="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/40 border border-emerald-800/40 text-emerald-400 text-xs font-medium">
-          <Zap class="w-3.5 h-3.5" />
-          <span>Zero Worker Invocations • 100% Static</span>
-        </div>
-
         <!-- GitHub Repository Button -->
         <a
           href="https://github.com/MCR300400/LeetCodeDone"

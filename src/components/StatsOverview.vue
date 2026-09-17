@@ -123,9 +123,9 @@ function getLangColor(lang: string | number): string {
       </div>
 
       <!-- Live performance note -->
-      <div class="flex items-center gap-1.5 text-2xs font-mono text-emerald-400/90">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span>Static Client-Side Dataset • 0ms Latency</span>
+      <div class="flex items-center gap-1.5 text-2xs font-mono text-slate-400">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>Archivio indicizzato • Risposta istantanea</span>
       </div>
     </div>
   </div>
