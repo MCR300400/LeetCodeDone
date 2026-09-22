@@ -18,7 +18,7 @@ defineProps<{
         <div>
           <div class="flex items-center gap-2">
             <span class="font-mono text-base font-bold text-white tracking-tight">
-              LeetCode<span class="text-leetcode-orange">Done</span>
+              LeetCodeDone
             </span>
             <span class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-leetcode-card border border-leetcode-border text-slate-300">
               v1.0
