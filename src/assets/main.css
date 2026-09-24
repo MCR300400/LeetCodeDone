@@ -8,8 +8,8 @@
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #0F1218;
-    color: #F1F5F9;
+    background-color: #121316;
+    color: #f4f4f5;
     overflow-x: clip;
     -webkit-overflow-scrolling: touch;
   }
@@ -29,7 +29,7 @@
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #0F1218;
+    background: #121316;
   }
   ::-webkit-scrollbar-thumb {
     background: #283141;

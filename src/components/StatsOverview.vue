@@ -26,7 +26,7 @@ function getLangColor(lang: string | number): string {
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
       
       <!-- Total Card -->
-      <div class="p-3 sm:p-5 rounded-xl bg-leetcode-card border border-leetcode-border/80 relative overflow-hidden group hover:border-leetcode-orange/40 transition-colors">
+      <div class="p-3 sm:p-5 rounded-lg bg-leetcode-card border border-leetcode-border/80 relative overflow-hidden group hover:border-leetcode-orange/40 transition-colors">
         <div class="flex items-center justify-between mb-1.5 sm:mb-2">
           <span class="text-xs text-slate-400 font-medium">Totale risolti</span>
           <CheckCircle class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-leetcode-orange shrink-0" />
@@ -45,7 +45,7 @@ function getLangColor(lang: string | number): string {
       </div>
 
       <!-- Easy Card -->
-      <div class="p-3 sm:p-5 rounded-xl bg-leetcode-card border border-leetcode-border/80 relative overflow-hidden group hover:border-emerald-500/40 transition-colors">
+      <div class="p-3 sm:p-5 rounded-lg bg-leetcode-card border border-leetcode-border/80 relative overflow-hidden group hover:border-emerald-500/40 transition-colors">
         <div class="flex items-center justify-between mb-1.5 sm:mb-2">
           <span class="text-[11px] sm:text-xs uppercase tracking-wider text-emerald-400 font-medium">Easy</span>
           <span class="text-[11px] sm:text-xs font-mono text-emerald-400 font-semibold">{{ percent(stats.easyCount) }}%</span>
@@ -65,7 +65,7 @@ function getLangColor(lang: string | number): string {
       </div>
 
       <!-- Medium Card -->
-      <div class="p-3 sm:p-5 rounded-xl bg-leetcode-card border border-leetcode-border/80 relative overflow-hidden group hover:border-amber-500/40 transition-colors">
+      <div class="p-3 sm:p-5 rounded-lg bg-leetcode-card border border-leetcode-border/80 relative overflow-hidden group hover:border-amber-500/40 transition-colors">
         <div class="flex items-center justify-between mb-1.5 sm:mb-2">
           <span class="text-[11px] sm:text-xs uppercase tracking-wider text-amber-400 font-medium">Medium</span>
           <span class="text-[11px] sm:text-xs font-mono text-amber-400 font-semibold">{{ percent(stats.mediumCount) }}%</span>
@@ -85,7 +85,7 @@ function getLangColor(lang: string | number): string {
       </div>
 
       <!-- Hard Card -->
-      <div class="p-3 sm:p-5 rounded-xl bg-leetcode-card border border-leetcode-border/80 relative overflow-hidden group hover:border-rose-500/40 transition-colors">
+      <div class="p-3 sm:p-5 rounded-lg bg-leetcode-card border border-leetcode-border/80 relative overflow-hidden group hover:border-rose-500/40 transition-colors">
         <div class="flex items-center justify-between mb-1.5 sm:mb-2">
           <span class="text-[11px] sm:text-xs uppercase tracking-wider text-rose-400 font-medium">Hard</span>
           <span class="text-[11px] sm:text-xs font-mono text-rose-400 font-semibold">{{ percent(stats.hardCount) }}%</span>

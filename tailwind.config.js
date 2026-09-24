@@ -9,16 +9,16 @@ export default {
     extend: {
       colors: {
         leetcode: {
-          orange: '#FFA116',
-          yellow: '#FFB800',
-          dark: '#1A1A1A',
-          bg: '#0F1218',
-          card: '#181E29',
-          cardHover: '#1F2634',
-          border: '#283141',
-          easy: '#00B8A3',
-          medium: '#FFC01E',
-          hard: '#FF375F',
+          orange: '#f97316',
+          yellow: '#fb923c',
+          dark: '#121316',
+          bg: '#121316',
+          card: '#191a20',
+          cardHover: '#22242c',
+          border: '#262830',
+          easy: '#10b981',
+          medium: '#f59e0b',
+          hard: '#f43f5e',
         }
       },
       fontFamily: {

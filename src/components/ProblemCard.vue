@@ -22,7 +22,7 @@ function getCodePreview(code: string): string {
 
 <template>
   <div
-    class="rounded-xl bg-leetcode-card border border-leetcode-border/90 hover:border-leetcode-orange/50 p-4 sm:p-5 flex flex-col justify-between group transition-all duration-200 hover:shadow-lg hover:shadow-leetcode-orange/5 overflow-hidden min-w-0"
+    class="rounded-lg bg-leetcode-card border border-leetcode-border/90 hover:border-leetcode-orange/50 p-4 sm:p-5 flex flex-col justify-between group transition-colors overflow-hidden min-w-0"
   >
     <div class="min-w-0">
       <!-- Card Top: Number, Difficulty & Multi-solution badge -->
